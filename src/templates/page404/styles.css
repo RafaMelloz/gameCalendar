@@ -1,3 +1,9 @@
+.alignBox{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
 .box404{
     background-color: #141414;
     max-width: 65%;
@@ -5,6 +11,8 @@
     border-radius: 1rem;
     border: 0.1rem solid #9b9b9b56;
     margin: 4rem auto;
+    max-height: 25rem;
+
 }
 
 .backErro{
