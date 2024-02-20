@@ -2,6 +2,13 @@
     padding-top: 3rem;
 }
 
+
+.flexHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .subTitle__content{
     max-width: 350px;
 }

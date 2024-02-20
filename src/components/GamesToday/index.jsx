@@ -13,6 +13,13 @@ import { ShowPlatforms } from "../ShowPlatforms";
 export const GamesToday = () =>{
 
     const [games,setGames] = useState([]);
+
+    const data = new Date();
+    const dia = data.getDate();
+    const mes = data.getMonth() + 1;
+    const ano = data.getFullYear();
+    const diaAtual = `${dia}/${mes}/${ano}`;
+
     useEffect(() => {
         const loadGame = async () => {
             try {
@@ -29,10 +36,16 @@ export const GamesToday = () =>{
     return(
         <div className="gameToday">
 
-            <div className="subTitle__content">
-                <h3>GAMES LANÇADOS HOJE:</h3>
-                <hr />
+            <div className="flexHeader">
+                <div className="subTitle__content">
+                    <h3>GAMES LANÇADOS HOJE:</h3>
+                    <hr />
+                </div>
+                <h3>{diaAtual}</h3>
             </div>
+
+            
+            
 
             <div className="gamesToday__grid">
                 {games.results && games.results.length > 0 ? (
