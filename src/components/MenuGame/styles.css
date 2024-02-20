@@ -1,0 +1,68 @@
+.game{
+    width: 80%;
+    max-width: 60rem;
+    min-height: calc(100vh - 65px);
+    margin: auto;
+    padding: 1.5rem;
+    
+    background-color: #141414;
+    
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border: 0.1rem solid #9b9b9b56;
+
+}
+
+.game__Describe h2{
+    font-size: 3rem;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-style: oblique;
+}
+
+.game__Describe img{
+    max-width: 100%;
+    border-radius: 1rem;
+    border: 0.1rem solid #9b9b9b56;
+
+}
+
+
+
+.game__Describe__overview{
+    padding: 1rem 0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game__Describe__overview{
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.game__Describe__overview b{
+    background-color: #2d439c;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 2.2rem;
+    font-style: italic;
+}
+
+.game__Describe__overview .icon{
+    width: 4rem;
+    height: 4rem;
+}
+
+.game__Describe ul {
+    color: white;
+    font-size: 1.8rem;
+}
+
+.game__Describe ul li{
+    color: white;
+    font-size: 1.8rem;
+    list-style-type: none;
+}

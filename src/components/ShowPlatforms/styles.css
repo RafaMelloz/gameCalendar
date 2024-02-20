@@ -1,0 +1,27 @@
+.icons{
+    display: flex;
+    justify-content: flex-end
+}
+
+
+.icon{
+    border-radius: 1rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.8rem;
+    margin-right: 0.5rem;
+    color: white;
+}
+
+.xbox{
+    background-color: #107b10;
+}
+.play{
+    background-color: #0070d1;
+}
+.nint{
+    background-color: #e60012;
+}
+.steam{
+    background: linear-gradient(180deg, rgba(11,25,53,1) 0%, rgba(20,108,156,1) 100%);
+}

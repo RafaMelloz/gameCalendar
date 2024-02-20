@@ -58,6 +58,7 @@
     background-size: cover;
     min-height: 15rem;
     border-radius: 1rem;
+    text-decoration: none;
 }
 
 .dayCard__game h4{

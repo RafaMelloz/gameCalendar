@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import { fetchGamesAll } from "../../api/gameReleaseAPI";
+import { GameDataContext } from "../../context";
+import { Link } from "react-router-dom";
 
 export const GamesAll = ( ) =>{
 
     const [allGames, setAllGames] = useState([]);
+
+    const gameContext = useContext(GameDataContext);
+    const { gameState, setGameState } = gameContext;
     
     const [daysInMonth, setDaysInMonth] = useState([]);
 
@@ -12,8 +17,8 @@ export const GamesAll = ( ) =>{
         const loadAllGame = async () => {
             try {
                 const allGamesData = await fetchGamesAll();
-                setAllGames(allGamesData.results);
-                console.log(allGamesData);
+                    setAllGames(allGamesData.results);
+                    setGameState(allGamesData.results);
             } catch (error) {
                 console.error('Ocorreu um erro ao carregar os posts:', error);
             }
@@ -72,10 +77,9 @@ export const GamesAll = ( ) =>{
                                 const releaseDate = new Date(game.released);
                                 if (releaseDate.getDate() + 1 === day) {
                                     return (
-                                        <div key={game.slug} className="dayCard__game" style={{ backgroundImage: `url(${game.background_image})`}}>
+                                        <Link to={`/game/${game.id}`} key={game.slug} className="dayCard__game" style={{ backgroundImage: `url(${game.background_image})`}}>
                                             <h4>{game.name}</h4>
-                                            {/* Adicione outros detalhes do jogo conforme necessário */}
-                                        </div>
+                                        </Link>
                                     );
                                 }
                                 return null;

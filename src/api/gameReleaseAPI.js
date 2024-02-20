@@ -28,6 +28,7 @@ export const fetchGamesAll = async () => {
 export const fetchGamesToday = async () => {
     try {
         const response = await fetch(`https://api.rawg.io/api/games?key=${key}&dates=${dataFormatada},${dataFormatada}`);
+
         const data = await response.json();
         return data;
     } catch (error) {

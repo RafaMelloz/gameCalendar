@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <div className="container">
-        <h1>Game Calendar</h1>
+       
         <GamesToday />
         <GamesAll />
       </div>
