@@ -21,8 +21,6 @@ export const MenuGame = () =>{
 
     return(
         <>
-            
-
             <div className="game">
                 <BackButton />
 
