@@ -9,16 +9,25 @@ import "./styles.css";
 
 import vegeta from "../../imgs/vegeta.jpeg";
 import { ShowPlatforms } from "../ShowPlatforms";
+import { Loader } from "../Loader";
 
 export const GamesToday = () =>{
 
     const [games,setGames] = useState([]);
+    const [load, setLoad] = useState(false);
 
     const data = new Date();
     const dia = data.getDate();
     const mes = data.getMonth() + 1;
     const ano = data.getFullYear();
     const diaAtual = `${dia}/${mes}/${ano}`;
+
+
+    const loader = () => {
+        setTimeout(() => {
+            setLoad(true)
+        }, 2000);
+    }
 
     useEffect(() => {
         const loadGame = async () => {
@@ -31,48 +40,50 @@ export const GamesToday = () =>{
             
         };
         loadGame();
+        loader();
     }, [])
 
     return(
-        <div className="gameToday">
+        <>
+            {!load ? 
+                <Loader/>
+                :
+                <div className="gameToday">
 
-            <div className="flexHeader">
-                <div className="subTitle__content">
-                    <h3>GAMES LANÇADOS HOJE:</h3>
-                    <hr />
-                </div>
-                <h3>{diaAtual}</h3>
-            </div>
-
-            
-            
-
-            <div className="gamesToday__grid">
-                {games.results && games.results.length > 0 ? (
-                    games.results.map(game => (
-                        <div
-                            className="gameToday__card"
-                            key={game.slug}
-                            style={{ backgroundImage: `url(${game.background_image})` }}>
-                            <div className="gameToday__card__bgOverlay">
-                                <div className="gameToday__card__content">
-                                    <h4>{game.name}</h4>
-                                    <ShowPlatforms game={game}/>
-                                </div>
-                            </div>
+                    <div className="flexHeader">
+                        <div className="subTitle__content">
+                            <h3>GAMES LANÇADOS HOJE:</h3>
+                            <hr />
                         </div>
-                    ))
-                ) : (
-                        <div className="notGame">
-                            <img className="sadVegeta" src={vegeta} alt="tristeza"></img>
-
-                        <h1  >Nenhum lançamento :C</h1>
+                        <h3>{diaAtual}</h3>
                     </div>
-                )}
 
+                    <div className="gamesToday__grid">
+                        {games.results && games.results.length > 0 ? (
+                            games.results.map(game => (
+                                <div
+                                    className="gameToday__card"
+                                    key={game.slug}
+                                    style={{ backgroundImage: `url(${game.background_image})` }}>
+                                    <div className="gameToday__card__bgOverlay">
+                                        <div className="gameToday__card__content">
+                                            <h4>{game.name}</h4>
+                                            <ShowPlatforms game={game} />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="notGame">
+                                <img className="sadVegeta" src={vegeta} alt="tristeza"></img>
 
+                                <h1  >Nenhum lançamento :C</h1>
+                            </div>
+                        )}
 
-            </div>
-        </div>
+                    </div>
+                </div>    
+        }
+        </>
     )
 }

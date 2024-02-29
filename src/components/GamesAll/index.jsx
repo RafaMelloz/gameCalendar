@@ -12,6 +12,14 @@ export const GamesAll = ( ) =>{
     const { gameState, setGameState } = gameContext;
     
     const [daysInMonth, setDaysInMonth] = useState([]);
+    const [load,setLoad] = useState(false);
+ 
+
+    const loader = () =>{
+        setTimeout(() => {
+            setLoad(true)
+        }, 2000);
+    }
 
     useEffect(() => {
         const loadAllGame = async () => {
@@ -32,62 +40,68 @@ export const GamesAll = ( ) =>{
         const days = new Date(year, month, 0).getDate();
         const daysArray = Array.from({ length: days }, (_, i) => i + 1);
         setDaysInMonth(daysArray);
+        loader();
     }, [])
 
 
     const currentMonth = new Date().getMonth() + 1;
     return(
         <>
-            <ul className="months">
-               {currentMonth == '01' ? (
-                    <li>Janeiro</li>
-                ) : currentMonth == '02' ? (
-                    <li>Fevereiro</li>
-                ) : currentMonth =='03' ? (
-                    <li>Março</li>
-                ) : currentMonth == '04' ? (
-                    <li>Abril</li>
-                ) : currentMonth == '05' ? (
-                    <li>Maio</li>
-                ) : currentMonth == '06' ? (
-                    <li>Junho</li>
-                ) : currentMonth == '07' ? (
-                    <li>Julho</li>
-                ) : currentMonth == '08' ? (
-                    <li>Agosto</li>
-                ) : currentMonth == '09' ? (
-                    <li>Setembro</li>
-                ) : currentMonth == '10' ? (
-                    <li>Outubro</li>
-                ) : currentMonth == '11' ? (
-                    <li>Novembro</li>
-                ) : currentMonth == '12' ? (
-                    <li>Dezembro</li>
-                ) : null
+           { !load ?
+           null :
+            <div>
+                    <ul className="months">
+                        {currentMonth == '01' ? (
+                            <li>Janeiro</li>
+                        ) : currentMonth == '02' ? (
+                            <li>Fevereiro</li>
+                        ) : currentMonth == '03' ? (
+                            <li>Março</li>
+                        ) : currentMonth == '04' ? (
+                            <li>Abril</li>
+                        ) : currentMonth == '05' ? (
+                            <li>Maio</li>
+                        ) : currentMonth == '06' ? (
+                            <li>Junho</li>
+                        ) : currentMonth == '07' ? (
+                            <li>Julho</li>
+                        ) : currentMonth == '08' ? (
+                            <li>Agosto</li>
+                        ) : currentMonth == '09' ? (
+                            <li>Setembro</li>
+                        ) : currentMonth == '10' ? (
+                            <li>Outubro</li>
+                        ) : currentMonth == '11' ? (
+                            <li>Novembro</li>
+                        ) : currentMonth == '12' ? (
+                            <li>Dezembro</li>
+                        ) : null
 
-               }
-            </ul>
+                        }
+                    </ul>
 
-            <div className="grid__dayCard">
-                {daysInMonth.map(day => (
-                    <div key={day} className="dayCard">
-                        <span className="dayCard__counter">{day < 10 ? '0' + day : day}</span>
-                        <div className="dayCard__games">
-                            {allGames.map(game => {
-                                const releaseDate = new Date(game.released);
-                                if (releaseDate.getDate() + 1 === day) {
-                                    return (
-                                        <Link to={`/game/${game.id}`} key={game.slug} className="dayCard__game" style={{ backgroundImage: `url(${game.background_image})`}}>
-                                            <h4>{game.name}</h4>
-                                        </Link>
-                                    );
-                                }
-                                return null;
-                            })}
-                        </div>
+                    <div className="grid__dayCard">
+                        {daysInMonth.map(day => (
+                            <div key={day} className="dayCard">
+                                <span className="dayCard__counter">{day < 10 ? '0' + day : day}</span>
+                                <div className="dayCard__games">
+                                    {allGames.map(game => {
+                                        const releaseDate = new Date(game.released);
+                                        if (releaseDate.getDate() + 1 === day) {
+                                            return (
+                                                <Link to={`/game/${game.id}`} key={game.slug} className="dayCard__game" style={{ backgroundImage: `url(${game.background_image})` }}>
+                                                    <h4>{game.name}</h4>
+                                                </Link>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
             </div>
+           }
         </>
     )
 }
